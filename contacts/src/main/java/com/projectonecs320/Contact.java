@@ -11,14 +11,6 @@ public class Contact {
     private String address;
     private List<Appointment> appointments;
 
-    public Contact(String Id, String firstName, String lastName, String phone, String address) {
-        setId(Id);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setPhone(phone);
-        setAddress(address);
-    }
-
     public Contact(String Id, String firstName, String lastName, String phone, String address,
             List<Appointment> appointments) {
         setId(Id);
@@ -26,6 +18,7 @@ public class Contact {
         setLastName(lastName);
         setPhone(phone);
         setAddress(address);
+        setAppointments(appointments);
     }
 
     public String getId() {
@@ -92,4 +85,11 @@ public class Contact {
         appointments.add(appointment);
     }
 
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 }

@@ -17,9 +17,10 @@ public class ContactService {
         this.taskService = taskService;
     }
 
-    public void addContact(Contact contact) {
-        String id = generateId();
-        contact.setId(id);
+    public void addContact() {
+        String contactId = generateId();
+        List<Appointment> appointments = new ArrayList<>();
+        Contact contact = new Contact(contactId, "", "", "", "", appointments);
         contacts.add(contact);
     }
 

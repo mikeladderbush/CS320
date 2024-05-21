@@ -15,32 +15,32 @@ public class ContactServiceTest {
     @Before
     public void setUp() {
         contactService = new ContactService(null, null);
-        contact = new Contact(contactService.generateId(), "John", "Doe", "1234567890", "123 Main St");
+        contact = new Contact(contactService.generateId(), "John", "Doe", "1234567890", "123 Main St", null);
     }
 
     @Test
     public void testAddContact() {
-        contactService.addContact(contact);
+        contactService.addContact();
         assertEquals(1, contactService.getAllContacts().size());
     }
 
     @Test
     public void testUpdateFirstName() {
-        contactService.addContact(contact);
+        contactService.addContact();
         contactService.updateContactFirstName(contact.getId(), "Jane");
         assertEquals("Jane", contact.getFirstName());
     }
 
     @Test
     public void testUpdateLastName() {
-        contactService.addContact(contact);
+        contactService.addContact();
         contactService.updateContactLastName(contact.getId(), "Smith");
         assertEquals("Smith", contact.getLastName());
     }
 
     @Test
     public void testFindContactById() {
-        contactService.addContact(contact);
+        contactService.addContact();
 
         Contact foundContact = contactService.findContactById(contact.getId());
         assertNotNull(foundContact);
@@ -49,7 +49,7 @@ public class ContactServiceTest {
 
     @Test
     public void testUpdateFirstNameWithInvalidName() {
-        contactService.addContact(contact);
+        contactService.addContact();
 
         assertThrows(IllegalArgumentException.class, () -> {
             contactService.updateContactFirstName(contact.getId(), "ThisIsTooLong");
@@ -59,7 +59,7 @@ public class ContactServiceTest {
 
     @Test
     public void testDeleteContact() {
-        contactService.addContact(contact);
+        contactService.addContact();
 
         contactService.deleteContact(contact.getId());
         assertEquals(0, contactService.getAllContacts().size());
