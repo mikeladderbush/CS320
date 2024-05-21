@@ -14,7 +14,7 @@ public class AppointmentServiceTest {
 
     @Before
     public void setUp() {
-        appointmentService = new AppointmentService();
+        appointmentService = new AppointmentService(null);
         appointment = new Appointment(appointmentService.generateId(), date, "Description Default");
     }
 

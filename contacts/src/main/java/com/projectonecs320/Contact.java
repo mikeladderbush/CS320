@@ -1,13 +1,26 @@
 package com.projectonecs320;
 
+import java.util.List;
+
 public class Contact {
+
     private String Id;
     private String firstName;
     private String lastName;
     private String phone;
     private String address;
+    private List<Appointment> appointments;
 
     public Contact(String Id, String firstName, String lastName, String phone, String address) {
+        setId(Id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPhone(phone);
+        setAddress(address);
+    }
+
+    public Contact(String Id, String firstName, String lastName, String phone, String address,
+            List<Appointment> appointments) {
         setId(Id);
         setFirstName(firstName);
         setLastName(lastName);
@@ -73,6 +86,10 @@ public class Contact {
         } else {
             throw new IllegalArgumentException("Address must be fewer than 30 characters");
         }
+    }
+
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
     }
 
 }

@@ -8,9 +8,11 @@ import java.util.Random;
 public class AppointmentService {
 
     private List<Appointment> appointments;
+    private TaskService taskService;
 
-    public AppointmentService() {
+    public AppointmentService(TaskService taskService) {
         this.appointments = new ArrayList<>();
+        this.taskService = taskService;
     }
 
     public String generateId() {
@@ -31,6 +33,16 @@ public class AppointmentService {
         appointments.add(appointment);
     }
 
+    public void addTask(String appointmentId, Task task) {
+        Appointment appointment = findAppointmentById(appointmentId);
+        if (appointment != null) {
+            taskService.addTask(task);
+            appointment.addTask(task);
+        } else {
+            throw new IllegalArgumentException("Contact not found");
+        }
+    }
+
     public void deleteAppointment(String id) {
         Iterator<Appointment> iterator = appointments.iterator();
         while (iterator.hasNext()) {
@@ -39,6 +51,15 @@ public class AppointmentService {
                 iterator.remove();
             }
         }
+    }
+
+    public Appointment findAppointmentById(String id) {
+        for (Appointment appointment : appointments) {
+            if (appointment.getId().equals(id)) {
+                return appointment;
+            }
+        }
+        return null;
     }
 
     public List<Appointment> getAllAppointments() {

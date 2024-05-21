@@ -6,16 +6,46 @@ import java.util.List;
 import java.util.Random;
 
 public class ContactService {
-    private List<Contact> contacts;
 
-    public ContactService() {
+    private List<Contact> contacts;
+    private AppointmentService appointmentService;
+    private TaskService taskService;
+
+    public ContactService(AppointmentService appointmentService, TaskService taskService) {
         this.contacts = new ArrayList<>();
+        this.appointmentService = appointmentService;
+        this.taskService = taskService;
     }
 
     public void addContact(Contact contact) {
         String id = generateId();
         contact.setId(id);
         contacts.add(contact);
+    }
+
+    public void addAppointment(String contactId, Appointment appointment) {
+        Contact contact = findContactById(contactId);
+        if (contact != null) {
+            appointmentService.addAppointment(appointment);
+            contact.addAppointment(appointment);
+        } else {
+            throw new IllegalArgumentException("Contact not found");
+        }
+    }
+
+    public void addTask(String contactId, String appointmentId, Task task) {
+        Contact contact = findContactById(contactId);
+        if (contact != null) {
+            Appointment appointment = appointmentService.findAppointmentById(appointmentId);
+            if (appointment != null) {
+                taskService.addTask(task);
+                appointment.addTask(task);
+            } else {
+                throw new IllegalArgumentException("Appointment not found");
+            }
+        } else {
+            throw new IllegalArgumentException("Contact not found");
+        }
     }
 
     public String generateId() {
@@ -84,5 +114,4 @@ public class ContactService {
         }
         return null;
     }
-
 }

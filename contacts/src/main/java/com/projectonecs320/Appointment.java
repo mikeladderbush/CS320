@@ -1,17 +1,19 @@
 package com.projectonecs320;
 
 import java.util.Date;
+import java.util.List;
 
 public class Appointment {
 
     String id;
     Date date;
     String description;
+    private List<Task> tasks;
 
-    public Appointment(String id, Date date, String description) {
-        this.id = id;
-        this.date = date;
-        this.description = description;
+    public Appointment(String Id, Date date, String description) {
+        setId(Id);
+        setDate(date);
+        setDescription(description);
     }
 
     public String getId() {
@@ -48,6 +50,10 @@ public class Appointment {
         } else {
             throw new IllegalArgumentException("This date is invalid");
         }
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 
 }

@@ -14,7 +14,7 @@ public class ContactServiceTest {
 
     @Before
     public void setUp() {
-        contactService = new ContactService();
+        contactService = new ContactService(null, null);
         contact = new Contact(contactService.generateId(), "John", "Doe", "1234567890", "123 Main St");
     }
 
