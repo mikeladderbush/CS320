@@ -1,5 +1,6 @@
-package com.projectonecs320;
+package com.projectonecs320.Classes;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,22 +11,13 @@ public class Appointment {
     String description;
     private List<Task> tasks;
 
-    public Appointment(String Id, Date date, String description) {
-        setId(Id);
-        setDate(date);
-        setDescription(description);
+    public Appointment(String id) {
+        this.id = id;
+        this.tasks = new ArrayList<>();
     }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        if (id.length() <= 10 && id != null) {
-            this.id = id;
-        } else {
-            throw new IllegalArgumentException("This id is invalid");
-        }
     }
 
     public Date getDate() {
@@ -52,7 +44,7 @@ public class Appointment {
         }
     }
 
-    public void addTask(Task task) {
+    public void addTaskToAppointment(Task task) {
         tasks.add(task);
     }
 

@@ -5,8 +5,8 @@ import static org.junit.Assert.assertThrows;
 
 import org.junit.*;
 
-import com.projectonecs320.Task;
-import com.projectonecs320.TaskService;
+import com.projectonecs320.Classes.Task;
+import com.projectonecs320.Services.TaskService;
 
 public class TaskServiceTest {
     private TaskService taskService;
@@ -15,7 +15,7 @@ public class TaskServiceTest {
     @Before
     public void setUp() {
         taskService = new TaskService();
-        task = new Task(taskService.generateId(), "task", "description");
+        task = new Task(taskService.generateId());
     }
 
     @Test

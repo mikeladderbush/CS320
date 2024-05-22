@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-import com.projectonecs320.Contact;
+import com.projectonecs320.Classes.Contact;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ public class ContactTest {
 
     @Test
     public void testContactConstructor() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         assertEquals("1", contact.getId());
         assertEquals("John", contact.getFirstName());
@@ -19,24 +19,22 @@ public class ContactTest {
 
     @Test
     public void testSetIdValid() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
-        contact.setId("2");
         assertEquals("2", contact.getId());
     }
 
     @Test
     public void testSetIdTooLong() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            contact.setId("12345678901");
         });
     }
 
     @Test
     public void testSetFirstNameValid() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         contact.setFirstName("Jane");
         assertEquals("Jane", contact.getFirstName());
@@ -44,7 +42,7 @@ public class ContactTest {
 
     @Test
     public void testSetFirstNameTooLong() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         assertThrows(IllegalArgumentException.class, () -> {
             contact.setFirstName("ThisIsTooLong");
@@ -53,7 +51,7 @@ public class ContactTest {
 
     @Test
     public void testSetLastNameValid() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         contact.setLastName("Jane");
         assertEquals("Jane", contact.getLastName());
@@ -61,7 +59,7 @@ public class ContactTest {
 
     @Test
     public void testSetLastNameTooLong() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         assertThrows(IllegalArgumentException.class, () -> {
             contact.setLastName("ThisIsTooLong");
@@ -70,7 +68,7 @@ public class ContactTest {
 
     @Test
     public void testSetPhoneValid() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         contact.setPhone("1234567890");
         assertEquals("1234567890", contact.getPhone());
@@ -78,7 +76,7 @@ public class ContactTest {
 
     @Test
     public void testSetPhoneIncorrectLength() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         assertThrows(IllegalArgumentException.class, () -> {
             contact.setPhone("ThisIsTooLong");
@@ -91,7 +89,7 @@ public class ContactTest {
 
     @Test
     public void testSetAddressValid() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         contact.setAddress("123 Main St");
         assertEquals("123 Main St", contact.getAddress());
@@ -99,7 +97,7 @@ public class ContactTest {
 
     @Test
     public void testSetAddressLength() {
-        Contact contact = new Contact("1", "John", "Doe", "1234567890", "123 Main St", null);
+        Contact contact = new Contact("1");
 
         assertThrows(IllegalArgumentException.class, () -> {
             contact.setAddress(

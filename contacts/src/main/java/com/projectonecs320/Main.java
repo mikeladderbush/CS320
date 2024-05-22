@@ -1,5 +1,9 @@
 package com.projectonecs320;
 
+import com.projectonecs320.Services.AppointmentService;
+import com.projectonecs320.Services.ContactService;
+import com.projectonecs320.Services.TaskService;
+
 public class Main {
     public static void main(String[] args) {
 

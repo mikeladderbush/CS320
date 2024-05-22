@@ -1,9 +1,12 @@
-package com.projectonecs320;
+package com.projectonecs320.Services;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import com.projectonecs320.Classes.Appointment;
+import com.projectonecs320.Classes.Task;
 
 public class AppointmentService {
 
@@ -28,8 +31,6 @@ public class AppointmentService {
     }
 
     public void addAppointment(Appointment appointment) {
-        String appointmentId = generateId();
-        appointment.setId(appointmentId);
         appointments.add(appointment);
     }
 
@@ -37,7 +38,7 @@ public class AppointmentService {
         Appointment appointment = findAppointmentById(appointmentId);
         if (appointment != null) {
             taskService.addTask(task);
-            appointment.addTask(task);
+            appointment.addTaskToAppointment(task);
         } else {
             throw new IllegalArgumentException("Contact not found");
         }

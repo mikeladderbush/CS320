@@ -3,8 +3,8 @@ import java.util.Date;
 
 import org.junit.*;
 
-import com.projectonecs320.Appointment;
-import com.projectonecs320.AppointmentService;
+import com.projectonecs320.Classes.Appointment;
+import com.projectonecs320.Services.AppointmentService;
 
 public class AppointmentServiceTest {
     private AppointmentService appointmentService;
@@ -15,7 +15,7 @@ public class AppointmentServiceTest {
     @Before
     public void setUp() {
         appointmentService = new AppointmentService(null);
-        appointment = new Appointment(appointmentService.generateId(), date, "Description Default");
+        appointment = new Appointment(appointmentService.generateId());
     }
 
     @Test

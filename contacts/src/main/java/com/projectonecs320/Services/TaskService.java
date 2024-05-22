@@ -1,9 +1,11 @@
-package com.projectonecs320;
+package com.projectonecs320.Services;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import com.projectonecs320.Classes.Task;
 
 public class TaskService {
 
@@ -14,8 +16,6 @@ public class TaskService {
     }
 
     public void addTask(Task task) {
-        String id = generateId();
-        task.setId(id);
         tasks.add(task);
     }
 

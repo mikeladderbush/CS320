@@ -1,9 +1,13 @@
-package com.projectonecs320;
+package com.projectonecs320.Services;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import com.projectonecs320.Classes.Appointment;
+import com.projectonecs320.Classes.Contact;
+import com.projectonecs320.Classes.Task;
 
 public class ContactService {
 
@@ -17,14 +21,11 @@ public class ContactService {
         this.taskService = taskService;
     }
 
-    public void addContact() {
-        String contactId = generateId();
-        List<Appointment> appointments = new ArrayList<>();
-        Contact contact = new Contact(contactId, "", "", "", "", appointments);
+    public void addContact(Contact contact) {
         contacts.add(contact);
     }
 
-    public void addAppointment(String contactId, Appointment appointment) {
+    public void addAppointmentToContact(String contactId, Appointment appointment) {
         Contact contact = findContactById(contactId);
         if (contact != null) {
             appointmentService.addAppointment(appointment);
@@ -34,13 +35,13 @@ public class ContactService {
         }
     }
 
-    public void addTask(String contactId, String appointmentId, Task task) {
+    public void addTaskToContact(String contactId, String appointmentId, Task task) {
         Contact contact = findContactById(contactId);
         if (contact != null) {
             Appointment appointment = appointmentService.findAppointmentById(appointmentId);
             if (appointment != null) {
                 taskService.addTask(task);
-                appointment.addTask(task);
+                appointment.addTaskToAppointment(task);
             } else {
                 throw new IllegalArgumentException("Appointment not found");
             }

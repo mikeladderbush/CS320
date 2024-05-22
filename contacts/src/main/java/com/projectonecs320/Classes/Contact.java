@@ -1,36 +1,24 @@
-package com.projectonecs320;
+package com.projectonecs320.Classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contact {
 
-    private String Id;
+    private String id;
     private String firstName;
     private String lastName;
     private String phone;
     private String address;
     private List<Appointment> appointments;
 
-    public Contact(String Id, String firstName, String lastName, String phone, String address,
-            List<Appointment> appointments) {
-        setId(Id);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setPhone(phone);
-        setAddress(address);
-        setAppointments(appointments);
+    public Contact(String id) {
+        this.id = id;
+        this.appointments = new ArrayList<>();
     }
 
     public String getId() {
-        return Id;
-    }
-
-    public void setId(String Id) {
-        if (Id != null && Id.length() <= 10) {
-            this.Id = Id;
-        } else {
-            throw new IllegalArgumentException("Id must be fewer than 10 characters");
-        }
+        return id;
     }
 
     public String getFirstName() {
@@ -90,6 +78,10 @@ public class Contact {
     }
 
     public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
+        if (appointments == null) {
+            this.appointments = new ArrayList<>();
+        } else {
+            this.appointments = appointments;
+        }
     }
 }

@@ -1,27 +1,17 @@
-package com.projectonecs320;
+package com.projectonecs320.Classes;
 
 public class Task {
-    private String Id;
+    
+    private String id;
     private String name;
     private String description;
 
-    public Task(String Id, String name, String description) {
-        setId(Id);
-        setName(name);
-        setDescription(description);
+    public Task(String id) {
+        this.id = id;
     }
 
     public String getId() {
-        return Id;
-    }
-
-    public void setId(String Id) {
-        if (Id != null && Id.length() <= 10) {
-            this.Id = Id;
-        } else {
-            throw new IllegalArgumentException("Id must be fewer than 10 characters and not null.");
-        }
-
+        return id;
     }
 
     public String getName() {

@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-import com.projectonecs320.Appointment;
+import com.projectonecs320.Classes.Appointment;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ public class AppointmentTest {
 
     @Test
     public void testAppointmentConstructor() {
-        Appointment appointment = new Appointment("1", date, "blank");
+        Appointment appointment = new Appointment("1");
 
         assertEquals("1", appointment.getId());
         assertEquals(date, appointment.getDate());
@@ -21,24 +21,22 @@ public class AppointmentTest {
 
     @Test
     public void testSetIdValid() {
-        Appointment appointment = new Appointment("1", date, "blank");
+        Appointment appointment = new Appointment("1");
 
-        appointment.setId("2");
         assertEquals("2", appointment.getId());
     }
 
     @Test
     public void testSetIdTooLong() {
-        Appointment appointment = new Appointment("1", date, "blank");
+        Appointment appointment = new Appointment("1");
 
         assertThrows(IllegalArgumentException.class, () -> {
-            appointment.setId("12345678901");
         });
     }
 
     @Test
     public void testDateValid() {
-        Appointment appointment = new Appointment("1", date, "blank");
+        Appointment appointment = new Appointment("1");
 
         appointment.setDate(date);
         assertEquals(date, appointment.getDate());
@@ -46,7 +44,7 @@ public class AppointmentTest {
 
     @Test
     public void testDescriptionValid() {
-        Appointment appointment = new Appointment("1", date, "blank");
+        Appointment appointment = new Appointment("1");
 
         appointment.setDescription("Jane");
         assertEquals("Jane", appointment.getDescription());
@@ -54,7 +52,7 @@ public class AppointmentTest {
 
     @Test
     public void testDescriptionTooLong() {
-        Appointment appointment = new Appointment("1", date, "blank");
+        Appointment appointment = new Appointment("1");
 
         assertThrows(IllegalArgumentException.class, () -> {
             appointment.setDescription(
