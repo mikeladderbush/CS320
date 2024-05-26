@@ -44,8 +44,12 @@ public class Appointment {
         }
     }
 
-    public void addTaskToAppointment(Task task) {
+    public void addTask(Task task) {
         tasks.add(task);
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
     }
 
 }

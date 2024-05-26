@@ -7,44 +7,35 @@ import java.util.Random;
 
 import com.projectonecs320.Classes.Appointment;
 import com.projectonecs320.Classes.Contact;
-import com.projectonecs320.Classes.Task;
 
 public class ContactService {
 
     private List<Contact> contacts;
     private AppointmentService appointmentService;
-    private TaskService taskService;
 
-    public ContactService(AppointmentService appointmentService, TaskService taskService) {
+    public ContactService() {
+        this.contacts = new ArrayList<>();
+    }
+
+    public ContactService(AppointmentService appointmentService) {
         this.contacts = new ArrayList<>();
         this.appointmentService = appointmentService;
-        this.taskService = taskService;
     }
 
     public void addContact(Contact contact) {
         contacts.add(contact);
     }
 
-    public void addAppointmentToContact(String contactId, Appointment appointment) {
-        Contact contact = findContactById(contactId);
-        if (contact != null) {
-            appointmentService.addAppointment(appointment);
-            contact.addAppointment(appointment);
-        } else {
-            throw new IllegalArgumentException("Contact not found");
-        }
-    }
-
-    public void addTaskToContact(String contactId, String appointmentId, Task task) {
+    public void addAppointmentToContact(String contactId, String appointmentId) {
         Contact contact = findContactById(contactId);
         if (contact != null) {
             Appointment appointment = appointmentService.findAppointmentById(appointmentId);
             if (appointment != null) {
-                taskService.addTask(task);
-                appointment.addTaskToAppointment(task);
+                contact.addAppointment(appointment);
             } else {
                 throw new IllegalArgumentException("Appointment not found");
             }
+            contact.addAppointment(appointment);
         } else {
             throw new IllegalArgumentException("Contact not found");
         }

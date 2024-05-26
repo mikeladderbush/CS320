@@ -13,10 +13,33 @@ public class AppointmentService {
     private List<Appointment> appointments;
     private TaskService taskService;
 
+    public AppointmentService() {
+        this.appointments = new ArrayList<>();
+    }
+
     public AppointmentService(TaskService taskService) {
         this.appointments = new ArrayList<>();
         this.taskService = taskService;
     }
+
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    public void addTaskToAppointment(String appointmentId, String taskId) {
+        Appointment appointment = findAppointmentById(appointmentId);
+        if (appointment != null) {
+            Task task = taskService.findTaskById(taskId);
+            if (task != null) {
+                appointment.addTask(task);
+            } else {
+                throw new IllegalArgumentException("Task not found");
+            }
+        } else {
+            throw new IllegalArgumentException("Appointment not found");
+        }
+    }
+    
 
     public String generateId() {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -30,20 +53,6 @@ public class AppointmentService {
         return randomString.toString();
     }
 
-    public void addAppointment(Appointment appointment) {
-        appointments.add(appointment);
-    }
-
-    public void addTask(String appointmentId, Task task) {
-        Appointment appointment = findAppointmentById(appointmentId);
-        if (appointment != null) {
-            taskService.addTask(task);
-            appointment.addTaskToAppointment(task);
-        } else {
-            throw new IllegalArgumentException("Contact not found");
-        }
-    }
-
     public void deleteAppointment(String id) {
         Iterator<Appointment> iterator = appointments.iterator();
         while (iterator.hasNext()) {
@@ -54,6 +63,10 @@ public class AppointmentService {
         }
     }
 
+    public List<Appointment> getAllAppointments() {
+        return appointments;
+    }
+
     public Appointment findAppointmentById(String id) {
         for (Appointment appointment : appointments) {
             if (appointment.getId().equals(id)) {
@@ -61,10 +74,6 @@ public class AppointmentService {
             }
         }
         return null;
-    }
-
-    public List<Appointment> getAllAppointments() {
-        return appointments;
     }
 
 }

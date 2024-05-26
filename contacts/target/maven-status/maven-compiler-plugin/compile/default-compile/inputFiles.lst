@@ -1,7 +1,10 @@
-c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\AppointmentService.java
-c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Task.java
-c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Appointment.java
-c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\ContactService.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Suppliers\AppointmentSupplier.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Classes\Contact.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Classes\Task.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Suppliers\ContactSupplier.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Services\AppointmentService.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Suppliers\TaskSupplier.java
 c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Main.java
-c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Contact.java
-c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\TaskService.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Services\TaskService.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Classes\Appointment.java
+c:\Users\Michael Ladderbush\Desktop\CS320\contacts\src\main\java\com\projectonecs320\Services\ContactService.java
