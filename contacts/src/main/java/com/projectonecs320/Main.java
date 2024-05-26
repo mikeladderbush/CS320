@@ -45,11 +45,17 @@ public class Main {
         System.out.println("Contacts:");
         for (Contact c : contactService.getAllContacts()) {
             System.out.println("Contact ID: " + c.getId());
+            for (Appointment a : appointmentService.getAllAppointments()) {
+                System.out.println("Contact's Appointment's IDs: " + a.getId());
+            }
         }
 
         System.out.println("\nAppointments:");
         for (Appointment a : appointmentService.getAllAppointments()) {
             System.out.println("Appointment ID: " + a.getId());
+            for (Task t : taskService.getAllTasks()) {
+                System.out.println("Appointment's Task's IDs: " + t.getId());
+            }
         }
 
         System.out.println("\nTasks:");
