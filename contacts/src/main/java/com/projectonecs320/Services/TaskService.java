@@ -11,7 +11,7 @@ import com.projectonecs320.Interfaces.ServiceInterface;
 /**
  * Manages operations related to tasks.
  */
-public class TaskService implements ServiceInterface{
+public class TaskService implements ServiceInterface {
 
     private List<Task> tasks;
 
@@ -51,7 +51,7 @@ public class TaskService implements ServiceInterface{
     /**
      * Updates the name of a task with the specified ID.
      * 
-     * @param id The ID of the task.
+     * @param id   The ID of the task.
      * @param name The new name of the task.
      */
     public void updateTaskName(String id, String name) {
@@ -65,7 +65,7 @@ public class TaskService implements ServiceInterface{
     /**
      * Updates the description of a task with the specified ID.
      * 
-     * @param id The ID of the task.
+     * @param id          The ID of the task.
      * @param description The new description of the task.
      */
     public void updateTaskDescription(String id, String description) {

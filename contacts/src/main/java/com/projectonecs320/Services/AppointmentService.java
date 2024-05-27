@@ -12,7 +12,7 @@ import com.projectonecs320.Interfaces.ServiceInterface;
 /**
  * Manages operations related to appointments.
  */
-public class AppointmentService implements ServiceInterface{
+public class AppointmentService implements ServiceInterface {
 
     private List<Appointment> appointments;
 
@@ -36,7 +36,7 @@ public class AppointmentService implements ServiceInterface{
      * Associates a task with a specific appointment.
      * 
      * @param appointmentId The ID of the appointment.
-     * @param taskId The ID of the task to be associated.
+     * @param taskId        The ID of the task to be associated.
      * @throws IllegalArgumentException if the appointment or task is not found.
      */
     public void addTaskToAppointment(Appointment appointment, Task task) {
