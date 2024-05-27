@@ -3,6 +3,7 @@ import org.junit.Test;
 import com.projectonecs320.Classes.Appointment;
 import com.projectonecs320.Classes.Contact;
 import com.projectonecs320.Classes.Task;
+import com.projectonecs320.Factories.ContactFactory;
 import com.projectonecs320.Services.AppointmentService;
 import com.projectonecs320.Services.ContactService;
 import com.projectonecs320.Services.TaskService;
@@ -12,7 +13,7 @@ public class ServiceTest {
     @Test
     public void testAddContact() {
         ContactService contactService = new ContactService();
-        Contact contact = new Contact("1");
+        Contact contact = ContactFactory.createContact();
         contactService.addContact(contact);
         assertEquals(1, contactService.getAllContacts().size());
         assertTrue(contactService.getAllContacts().contains(contact));
@@ -28,14 +29,14 @@ public class ServiceTest {
         appointmentService.addAppointment(appointment);
 
         // Create contact
-        Contact contact = new Contact("1");
+        Contact contact = ContactFactory.createContact("1");
         contactService.addContact(contact);
 
         // Add appointment to contact
         contactService.addAppointmentToContact(contact.getId(), appointment.getId());
 
         // Check if appointment is added to contact
-        assertEquals(2, contact.getAppointments().size());
+        assertEquals(1, contact.getAppointments().size());
         assertTrue(contact.getAppointments().contains(appointment));
     }
 
@@ -58,7 +59,7 @@ public class ServiceTest {
         ContactService contactService = new ContactService(appointmentService);
 
         // Create contact
-        Contact contact = new Contact("1");
+        Contact contact = ContactFactory.createContact("1");
         contactService.addContact(contact);
 
         // Add non-existent appointment to contact
@@ -68,8 +69,8 @@ public class ServiceTest {
     @Test
     public void testDeleteContact() {
         ContactService contactService = new ContactService();
-        Contact contact1 = new Contact("1");
-        Contact contact2 = new Contact("2");
+        Contact contact1 = ContactFactory.createContact("1");
+        Contact contact2 = ContactFactory.createContact("2");
 
         // Add contacts
         contactService.addContact(contact1);

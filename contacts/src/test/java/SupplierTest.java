@@ -1,13 +1,10 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 import com.projectonecs320.Classes.Appointment;
-import com.projectonecs320.Classes.Contact;
 import com.projectonecs320.Classes.Task;
 import com.projectonecs320.Services.AppointmentService;
-import com.projectonecs320.Services.ContactService;
 import com.projectonecs320.Services.TaskService;
 import com.projectonecs320.Suppliers.AppointmentSupplier;
-import com.projectonecs320.Suppliers.ContactSupplier;
 import com.projectonecs320.Suppliers.TaskSupplier;
 
 public class SupplierTest {
@@ -27,20 +24,6 @@ public class SupplierTest {
     }
 
     @Test
-    public void testContactSupplier() {
-        ContactService contactService = new ContactService();
-        ContactSupplier contactSupplier = new ContactSupplier(contactService);
-
-        // Test contact supplier
-        Contact contact = contactSupplier.get();
-
-        // Check if contact is not null
-        assertNotNull(contact);
-        // Check if contact ID is generated
-        assertNotNull(contact.getId());
-    }
-
-    @Test
     public void testTaskSupplier() {
         TaskService taskService = new TaskService();
         TaskSupplier taskSupplier = new TaskSupplier(taskService);
@@ -54,5 +37,4 @@ public class SupplierTest {
         assertNotNull(task.getId());
     }
 
-    // Add more test cases as needed
 }

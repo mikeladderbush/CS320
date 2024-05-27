@@ -8,6 +8,7 @@ public class Task {
     private String id;
     private String name;
     private String description;
+    private Double quote;
 
     /**
      * Constructs a task with the specified ID.

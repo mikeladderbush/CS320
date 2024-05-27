@@ -11,8 +11,10 @@ public class Contact {
     private String id;
     private String firstName;
     private String lastName;
+    private String email;
     private String phone;
     private String address;
+    private List<PaymentOption> paymentOptions;
     private List<Appointment> appointments;
 
     /**
@@ -20,8 +22,13 @@ public class Contact {
      * 
      * @param id The ID of the contact.
      */
-    public Contact(String id) {
+    public Contact(String id, String firstName, String lastName, String email, String phone, String address, List<Appointment> appointments) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
         this.appointments = new ArrayList<>();
     }
 
@@ -77,6 +84,19 @@ public class Contact {
             this.lastName = lastName;
         } else {
             throw new IllegalArgumentException("Last name must be fewer than 10 characters");
+        }
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        if (email != null) {
+            this.email = email;
+            //ADD EMAIL ERROR CHECKING
+        } else {
+            throw new IllegalArgumentException("Email error");
         }
     }
 

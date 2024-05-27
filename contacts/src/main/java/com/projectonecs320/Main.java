@@ -3,11 +3,11 @@ package com.projectonecs320;
 import com.projectonecs320.Classes.Appointment;
 import com.projectonecs320.Classes.Contact;
 import com.projectonecs320.Classes.Task;
+import com.projectonecs320.Factories.ContactFactory;
 import com.projectonecs320.Services.AppointmentService;
 import com.projectonecs320.Services.ContactService;
 import com.projectonecs320.Services.TaskService;
 import com.projectonecs320.Suppliers.AppointmentSupplier;
-import com.projectonecs320.Suppliers.ContactSupplier;
 import com.projectonecs320.Suppliers.TaskSupplier;
 
 public class Main {
@@ -19,12 +19,11 @@ public class Main {
         ContactService contactService = new ContactService(appointmentService);
 
         // Create suppliers with their respective services
-        ContactSupplier contactSupplier = new ContactSupplier(contactService);
         AppointmentSupplier appointmentSupplier = new AppointmentSupplier(appointmentService);
         TaskSupplier taskSupplier = new TaskSupplier(taskService);
 
-        // Generate and add a contact
-        Contact contact = contactSupplier.get();
+        // Create contact using factory
+        Contact contact = ContactFactory.createContact();
         contactService.addContact(contact);
 
         // Generate and add an appointment
@@ -65,10 +64,12 @@ public class Main {
 
 
         // Retrieve all contacts, appointments, and tasks
-        int contactNum = 1;
         for (Contact c : contactService.getAllContacts()) {
             System.out.println("Contact ID: " + c.getId());
-            contactNum++;
+            System.out.println("Contact First Name: " + c.getFirstName());
+            System.out.println("Contact Last Name: " + c.getLastName());
+            System.out.println("Contact Email: " + c.getEmail());
+            System.out.println("Contact Phone Number: " + c.getAddress());
             int appointmentNum = 1;
             for (Appointment a : appointmentService.getAllAppointments()) {
                 System.out.println(c.getId() + "'s Appointment "+ appointmentNum + " " + a.getId());

@@ -7,11 +7,12 @@ import java.util.Random;
 
 import com.projectonecs320.Classes.Appointment;
 import com.projectonecs320.Classes.Task;
+import com.projectonecs320.Interfaces.ServiceInterface;
 
 /**
  * Manages operations related to appointments.
  */
-public class AppointmentService {
+public class AppointmentService implements ServiceInterface{
 
     private List<Appointment> appointments;
     private TaskService taskService;

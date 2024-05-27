@@ -7,11 +7,12 @@ import java.util.Random;
 
 import com.projectonecs320.Classes.Appointment;
 import com.projectonecs320.Classes.Contact;
+import com.projectonecs320.Interfaces.ServiceInterface;
 
 /**
  * Manages operations related to contacts.
  */
-public class ContactService {
+public class ContactService implements ServiceInterface{
 
     private List<Contact> contacts;
     private AppointmentService appointmentService;

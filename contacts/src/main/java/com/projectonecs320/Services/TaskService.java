@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Random;
 
 import com.projectonecs320.Classes.Task;
+import com.projectonecs320.Interfaces.ServiceInterface;
 
 /**
  * Manages operations related to tasks.
  */
-public class TaskService {
+public class TaskService implements ServiceInterface{
 
     private List<Task> tasks;
 
