@@ -12,7 +12,7 @@ import com.projectonecs320.Interfaces.ServiceInterface;
 /**
  * Manages operations related to contacts.
  */
-public class ContactService implements ServiceInterface{
+public class ContactService implements ServiceInterface {
 
     private List<Contact> contacts;
 
@@ -35,7 +35,7 @@ public class ContactService implements ServiceInterface{
     /**
      * Associates an appointment with a specific contact.
      * 
-     * @param contactId The ID of the contact.
+     * @param contactId     The ID of the contact.
      * @param appointmentId The ID of the appointment to be associated.
      * @throws IllegalArgumentException if the contact or appointment is not found.
      */
@@ -71,7 +71,7 @@ public class ContactService implements ServiceInterface{
     /**
      * Updates the first name of a contact with the specified ID.
      * 
-     * @param id The ID of the contact.
+     * @param id        The ID of the contact.
      * @param firstName The new first name.
      */
     public void updateContactFirstName(String id, String firstName) {
@@ -85,7 +85,7 @@ public class ContactService implements ServiceInterface{
     /**
      * Updates the last name of a contact with the specified ID.
      * 
-     * @param id The ID of the contact.
+     * @param id       The ID of the contact.
      * @param lastName The new last name.
      */
     public void updateContactLastName(String id, String lastName) {
@@ -99,7 +99,7 @@ public class ContactService implements ServiceInterface{
     /**
      * Updates the phone number of a contact with the specified ID.
      * 
-     * @param id The ID of the contact.
+     * @param id    The ID of the contact.
      * @param phone The new phone number.
      */
     public void updateContactPhone(String id, String phone) {
@@ -113,7 +113,7 @@ public class ContactService implements ServiceInterface{
     /**
      * Updates the address of a contact with the specified ID.
      * 
-     * @param id The ID of the contact.
+     * @param id      The ID of the contact.
      * @param address The new address.
      */
     public void updateContactAddress(String id, String address) {

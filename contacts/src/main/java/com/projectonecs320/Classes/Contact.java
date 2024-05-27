@@ -51,7 +51,7 @@ public class Contact {
             this.email = value;
             return this;
         }
-        
+
         public ContactBuilder address(String value) {
             this.address = value;
             return this;
@@ -114,7 +114,8 @@ public class Contact {
      * Sets the first name of the contact.
      * 
      * @param firstName The first name of the contact.
-     * @throws IllegalArgumentException if the first name is null or exceeds 10 characters.
+     * @throws IllegalArgumentException if the first name is null or exceeds 10
+     *                                  characters.
      */
     public void setFirstName(String firstName) {
         if (firstName != null && firstName.length() <= 10) {
@@ -137,7 +138,8 @@ public class Contact {
      * Sets the last name of the contact.
      * 
      * @param lastName The last name of the contact.
-     * @throws IllegalArgumentException if the last name is null or exceeds 10 characters.
+     * @throws IllegalArgumentException if the last name is null or exceeds 10
+     *                                  characters.
      */
     public void setLastName(String lastName) {
         if (lastName != null && lastName.length() <= 10) {
@@ -154,7 +156,7 @@ public class Contact {
     public void setEmail(String email) {
         if (email != null) {
             this.email = email;
-            //ADD EMAIL ERROR CHECKING
+            // ADD EMAIL ERROR CHECKING
         } else {
             throw new IllegalArgumentException("Email error");
         }
@@ -173,7 +175,8 @@ public class Contact {
      * Sets the phone number of the contact.
      * 
      * @param phone The phone number of the contact.
-     * @throws IllegalArgumentException if the phone number is null or not exactly 10 characters.
+     * @throws IllegalArgumentException if the phone number is null or not exactly
+     *                                  10 characters.
      */
     public void setPhone(String phone) {
         if (phone != null && phone.length() == 10) {
@@ -196,7 +199,8 @@ public class Contact {
      * Sets the address of the contact.
      * 
      * @param address The address of the contact.
-     * @throws IllegalArgumentException if the address is null or exceeds 30 characters.
+     * @throws IllegalArgumentException if the address is null or exceeds 30
+     *                                  characters.
      */
     public void setAddress(String address) {
         if (address != null && address.length() <= 30) {

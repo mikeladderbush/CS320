@@ -3,12 +3,12 @@ package com.projectonecs320;
 import com.projectonecs320.Classes.Appointment;
 import com.projectonecs320.Classes.Contact;
 import com.projectonecs320.Classes.Task;
+import com.projectonecs320.Factories.AppointmentFactory;
 import com.projectonecs320.Factories.ContactFactory;
+import com.projectonecs320.Factories.TaskFactory;
 import com.projectonecs320.Services.AppointmentService;
 import com.projectonecs320.Services.ContactService;
 import com.projectonecs320.Services.TaskService;
-import com.projectonecs320.Suppliers.AppointmentSupplier;
-import com.projectonecs320.Suppliers.TaskSupplier;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,29 +18,25 @@ public class Main {
         AppointmentService appointmentService = new AppointmentService();
         ContactService contactService = new ContactService();
 
-        // Create suppliers with their respective services
-        AppointmentSupplier appointmentSupplier = new AppointmentSupplier(appointmentService);
-        TaskSupplier taskSupplier = new TaskSupplier(taskService);
-
         // Create contact using factory
         Contact contact = ContactFactory.createContact();
         contactService.addContact(contact);
 
-        // Generate and add an appointment
-        Appointment appointment = appointmentSupplier.get();
-        Appointment appointment2 = appointmentSupplier.get();
-        Appointment appointment3 = appointmentSupplier.get();
+        Appointment appointment = AppointmentFactory.createAppointment();
+        Appointment appointment2 = AppointmentFactory.createAppointment();
+        Appointment appointment3 = AppointmentFactory.createAppointment();
+
+        Task task = TaskFactory.createTask();
+        Task task2 = TaskFactory.createTask();
+        Task task3 = TaskFactory.createTask();
+        Task task4 = TaskFactory.createTask();
+        Task task5 = TaskFactory.createTask();
+        Task task6 = TaskFactory.createTask();
+
         appointmentService.addAppointment(appointment);
         appointmentService.addAppointment(appointment2);
         appointmentService.addAppointment(appointment3);
 
-        // Generate and add a task
-        Task task = taskSupplier.get();
-        Task task2 = taskSupplier.get();
-        Task task3 = taskSupplier.get();
-        Task task4 = taskSupplier.get();
-        Task task5 = taskSupplier.get();
-        Task task6 = taskSupplier.get();
         taskService.addTask(task);
         taskService.addTask(task2);
         taskService.addTask(task3);
@@ -56,12 +52,10 @@ public class Main {
         appointmentService.addTaskToAppointment(appointment3, task5);
         appointmentService.addTaskToAppointment(appointment3, task6);
 
-
         // Link appointment to contact
         contactService.addAppointmentToContact(contact, appointment);
         contactService.addAppointmentToContact(contact, appointment2);
         contactService.addAppointmentToContact(contact, appointment3);
-
 
         // Retrieve all contacts, appointments, and tasks
         for (Contact c : contactService.getAllContacts()) {
@@ -72,7 +66,7 @@ public class Main {
             System.out.println("Contact Phone Number: " + c.getAddress());
             int appointmentNum = 1;
             for (Appointment a : appointmentService.getAllAppointments()) {
-                System.out.println(c.getId() + "'s Appointment "+ appointmentNum + " " + a.getId());
+                System.out.println(c.getId() + "'s Appointment " + appointmentNum + " " + a.getId());
                 appointmentNum++;
                 int taskNum = 1;
                 for (Task t : a.getTasks()) { // Iterate over tasks associated with the current appointment
@@ -81,6 +75,6 @@ public class Main {
                 }
             }
         }
-        
+
     }
 }

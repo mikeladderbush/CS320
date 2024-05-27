@@ -4,19 +4,49 @@ package com.projectonecs320.Classes;
  * Represents a task.
  */
 public class Task {
-    
+
     private String id;
     private String name;
     private String description;
     private Double quote;
 
-    /**
-     * Constructs a task with the specified ID.
-     * 
-     * @param id The ID of the task.
-     */
-    public Task(String id) {
-        this.id = id;
+    public static class TaskBuilder {
+
+        private String id;
+        private String name = "NO_TASK_NAME_ON_FILE";
+        private String description = "NO_TASK_DESCRIPTION_ON_FILE";
+        private Double quote = 0.0;
+
+        public TaskBuilder(String id) {
+            this.id = id;
+        }
+
+        public TaskBuilder name(String value) {
+            this.name = value;
+            return this;
+        }
+
+        public TaskBuilder description(String value) {
+            this.description = value;
+            return this;
+        }
+
+        public TaskBuilder quote(Double value) {
+            this.quote = value;
+            return this;
+        }
+
+        public Task buildTask() {
+            return new Task(this);
+        }
+
+    }
+
+    private Task(TaskBuilder taskBuilder) {
+        id = taskBuilder.id;
+        name = taskBuilder.name;
+        description = taskBuilder.description;
+        quote = taskBuilder.quote;
     }
 
     /**
@@ -26,6 +56,10 @@ public class Task {
      */
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -41,7 +75,8 @@ public class Task {
      * Sets the name of the task.
      * 
      * @param name The name of the task.
-     * @throws IllegalArgumentException if the name is null or exceeds 20 characters.
+     * @throws IllegalArgumentException if the name is null or exceeds 20
+     *                                  characters.
      */
     public void setName(String name) {
         if (name != null && name.length() <= 20) {
@@ -64,7 +99,8 @@ public class Task {
      * Sets the description of the task.
      * 
      * @param description The description of the task.
-     * @throws IllegalArgumentException if the description is null or exceeds 50 characters.
+     * @throws IllegalArgumentException if the description is null or exceeds 50
+     *                                  characters.
      */
     public void setDescription(String description) {
         if (description != null && description.length() <= 50) {
@@ -72,5 +108,13 @@ public class Task {
         } else {
             throw new IllegalArgumentException("Description must be 50 characters or fewer and not null.");
         }
+    }
+
+    public Double getQuote() {
+        return quote;
+    }
+
+    public void setQuote(Double quote) {
+        this.quote = quote;
     }
 }

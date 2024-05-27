@@ -3,7 +3,9 @@ import org.junit.Test;
 import com.projectonecs320.Classes.Appointment;
 import com.projectonecs320.Classes.Contact;
 import com.projectonecs320.Classes.Task;
+import com.projectonecs320.Factories.AppointmentFactory;
 import com.projectonecs320.Factories.ContactFactory;
+import com.projectonecs320.Factories.TaskFactory;
 import com.projectonecs320.Services.AppointmentService;
 import com.projectonecs320.Services.ContactService;
 import com.projectonecs320.Services.TaskService;
@@ -26,11 +28,14 @@ public class ServiceTest {
         ContactService contactService = new ContactService();
 
         // Create appointment
-        Appointment appointment = new Appointment("1");
+        Appointment appointment = AppointmentFactory.createAppointment(builder -> {
+        });
+        appointment.setId("1");
         appointmentService.addAppointment(appointment);
 
         // Create contact
-        Contact contact = ContactFactory.createContact();
+        Contact contact = ContactFactory.createContact(builder -> {
+        });
         contact.setId("1");
         contactService.addContact(contact);
 
@@ -48,7 +53,8 @@ public class ServiceTest {
         ContactService contactService = new ContactService();
 
         // Create appointment
-        Appointment appointment = new Appointment("1");
+        Appointment appointment = AppointmentFactory.createAppointment(builder -> {
+        });
         appointmentService.addAppointment(appointment);
 
         Contact contact = null;
@@ -62,7 +68,8 @@ public class ServiceTest {
         ContactService contactService = new ContactService();
 
         // Create contact
-        Contact contact = ContactFactory.createContact();
+        Contact contact = ContactFactory.createContact(builder -> {
+        });
         contactService.addContact(contact);
 
         Appointment appointment = null;
@@ -74,8 +81,10 @@ public class ServiceTest {
     @Test
     public void testDeleteContact() {
         ContactService contactService = new ContactService();
-        Contact contact1 = ContactFactory.createContact();
-        Contact contact2 = ContactFactory.createContact();
+        Contact contact1 = ContactFactory.createContact(builder -> {
+        });
+        Contact contact2 = ContactFactory.createContact(builder -> {
+        });
 
         // Add contacts
         contactService.addContact(contact1);
@@ -92,7 +101,9 @@ public class ServiceTest {
     @Test
     public void testAddAppointment() {
         AppointmentService appointmentService = new AppointmentService();
-        Appointment appointment = new Appointment("1");
+        Appointment appointment = AppointmentFactory.createAppointment(builder -> {
+        });
+        appointment.setId("1");
         appointmentService.addAppointment(appointment);
         assertEquals(1, appointmentService.getAllAppointments().size());
         assertTrue(appointmentService.getAllAppointments().contains(appointment));
@@ -104,11 +115,15 @@ public class ServiceTest {
         AppointmentService appointmentService = new AppointmentService();
 
         // Create task
-        Task task = new Task("1");
+        Task task = TaskFactory.createTask(builder -> {
+        });
+        task.setId("1");
         taskService.addTask(task);
 
         // Create appointment
-        Appointment appointment = new Appointment("1");
+        Appointment appointment = AppointmentFactory.createAppointment(builder -> {
+        });
+        appointment.setId("1");
         appointmentService.addAppointment(appointment);
 
         // Add task to appointment
@@ -125,7 +140,9 @@ public class ServiceTest {
         AppointmentService appointmentService = new AppointmentService();
 
         // Create task
-        Task task = new Task("1");
+        Task task = TaskFactory.createTask(builder -> {
+        });
+        task.setId("1");
         taskService.addTask(task);
 
         Appointment appointment = null;
@@ -137,8 +154,12 @@ public class ServiceTest {
     @Test
     public void testDeleteAppointment() {
         AppointmentService appointmentService = new AppointmentService();
-        Appointment appointment1 = new Appointment("1");
-        Appointment appointment2 = new Appointment("2");
+        Appointment appointment1 = AppointmentFactory.createAppointment(builder -> {
+        });
+        appointment1.setId("1");
+        Appointment appointment2 = AppointmentFactory.createAppointment(builder -> {
+        });
+        appointment2.setId("2");
 
         // Add appointments
         appointmentService.addAppointment(appointment1);
@@ -155,7 +176,9 @@ public class ServiceTest {
     @Test
     public void testAddTask() {
         TaskService taskService = new TaskService();
-        Task task = new Task("1");
+        Task task = TaskFactory.createTask(builder -> {
+        });
+        task.setId("1");
         taskService.addTask(task);
         assertEquals(1, taskService.getAllTasks().size());
         assertTrue(taskService.getAllTasks().contains(task));
@@ -164,7 +187,9 @@ public class ServiceTest {
     @Test
     public void testUpdateTaskName() {
         TaskService taskService = new TaskService();
-        Task task = new Task("1");
+        Task task = TaskFactory.createTask(builder -> {
+        });
+        task.setId("1");
         taskService.addTask(task);
 
         // Update task name
@@ -177,7 +202,9 @@ public class ServiceTest {
     @Test
     public void testUpdateTaskDescription() {
         TaskService taskService = new TaskService();
-        Task task = new Task("1");
+        Task task = TaskFactory.createTask(builder -> {
+        });
+        task.setId("1");
         taskService.addTask(task);
 
         // Update task description
@@ -190,8 +217,12 @@ public class ServiceTest {
     @Test
     public void testDeleteTask() {
         TaskService taskService = new TaskService();
-        Task task1 = new Task("1");
-        Task task2 = new Task("2");
+        Task task1 = TaskFactory.createTask(builder -> {
+        });
+        task1.setId("1");
+        Task task2 = TaskFactory.createTask(builder -> {
+        });
+        task2.setId("2");
 
         // Add tasks
         taskService.addTask(task1);
