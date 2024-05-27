@@ -29,8 +29,9 @@ public class ServiceTest {
         appointmentService.addAppointment(appointment);
 
         // Create contact
-        Contact contact = ContactFactory.createContact("1");
+        Contact contact = ContactFactory.createContact();
         contactService.addContact(contact);
+        contact = contactService.findContactById(contact.getId());
 
         // Add appointment to contact
         contactService.addAppointmentToContact(contact.getId(), appointment.getId());
@@ -59,7 +60,7 @@ public class ServiceTest {
         ContactService contactService = new ContactService(appointmentService);
 
         // Create contact
-        Contact contact = ContactFactory.createContact("1");
+        Contact contact = ContactFactory.createContact();
         contactService.addContact(contact);
 
         // Add non-existent appointment to contact
@@ -69,15 +70,15 @@ public class ServiceTest {
     @Test
     public void testDeleteContact() {
         ContactService contactService = new ContactService();
-        Contact contact1 = ContactFactory.createContact("1");
-        Contact contact2 = ContactFactory.createContact("2");
+        Contact contact1 = ContactFactory.createContact();
+        Contact contact2 = ContactFactory.createContact();
 
         // Add contacts
         contactService.addContact(contact1);
         contactService.addContact(contact2);
 
         // Delete contact
-        contactService.deleteContact("1");
+        contactService.deleteContact(contact1.getId());
 
         // Check if contact is deleted
         assertEquals(1, contactService.getAllContacts().size());

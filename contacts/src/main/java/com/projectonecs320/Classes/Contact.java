@@ -17,19 +17,72 @@ public class Contact {
     private List<PaymentOption> paymentOptions;
     private List<Appointment> appointments;
 
-    /**
-     * Constructs a contact with the specified ID.
-     * 
-     * @param id The ID of the contact.
-     */
-    public Contact(String id, String firstName, String lastName, String email, String phone, String address, List<Appointment> appointments) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.appointments = new ArrayList<>();
+    public static class ContactBuilder {
+        //Required
+        private final String id;
+
+        //Optional
+        private String firstName = "NO FIRST NAME ON FILE";
+        private String lastName = "NO LAST NAME ON FILE";
+        private String phone = "NO EMAIL ON FILE";
+        private String email = "NO PHONE NUMBER ON FILE";
+        private String address = "NO ADDRESS ON FILE";
+        private List<PaymentOption> paymentOptions = null;
+        private List<Appointment> appointments = null;
+
+        public ContactBuilder(String id) {
+            this.id = id;
+        }
+
+        public ContactBuilder firstName(String value) {
+            this.firstName = value;
+            return this;
+        }
+
+        public ContactBuilder lastName(String value) {
+            this.lastName = value;
+            return this;
+        }
+
+        public ContactBuilder phone(String value) {
+            this.phone = value;
+            return this;
+        }
+
+        public ContactBuilder email(String value) {
+            this.email = value;
+            return this;
+        }
+        
+        public ContactBuilder address(String value) {
+            this.address = value;
+            return this;
+        }
+
+        public ContactBuilder paymentOptions(List<PaymentOption> value) {
+            this.paymentOptions = value;
+            return this;
+        }
+
+        public ContactBuilder appointments(List<Appointment> value) {
+            this.appointments = value;
+            return this;
+        }
+
+        public Contact buildContact() {
+            return new Contact(this);
+        }
+    }
+
+    private Contact(ContactBuilder contactBuilder) {
+        id = contactBuilder.id;
+        firstName = contactBuilder.firstName;
+        lastName = contactBuilder.lastName;
+        phone = contactBuilder.phone;
+        email = contactBuilder.email;
+        address = contactBuilder.address;
+        paymentOptions = contactBuilder.paymentOptions;
+        appointments = contactBuilder.appointments;
     }
 
     /**
@@ -39,6 +92,15 @@ public class Contact {
      */
     public String getId() {
         return id;
+    }
+
+    /**
+     * For testing purpose only.
+     * 
+     * @param id
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -146,13 +208,33 @@ public class Contact {
         }
     }
 
+    public void addPaymentOption(PaymentOption paymentOption) {
+        paymentOptions.add(paymentOption);
+    }
+
+    public List<PaymentOption> getPaymentOptions() {
+        return paymentOptions;
+    }
+
+    public void setPaymentOptions(List<PaymentOption> paymentOptions) {
+        if (paymentOptions == null) {
+            this.paymentOptions = new ArrayList<>();
+        } else {
+            this.paymentOptions = paymentOptions;
+        }
+    }
+
     /**
      * Adds an appointment to the list of appointments for the contact.
      * 
      * @param appointment The appointment to be added.
      */
     public void addAppointment(Appointment appointment) {
-        appointments.add(appointment);
+        if (appointments != null) {
+            this.appointments.add(appointment);
+        } else {
+            this.appointments = new ArrayList<>();
+        }
     }
 
     /**

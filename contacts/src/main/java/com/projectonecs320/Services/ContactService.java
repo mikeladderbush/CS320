@@ -16,6 +16,7 @@ public class ContactService implements ServiceInterface{
 
     private List<Contact> contacts;
     private AppointmentService appointmentService;
+    private PaymentOptionService paymentOptionService;
 
     /**
      * Constructs a ContactService with an empty list of contacts.
@@ -31,6 +32,17 @@ public class ContactService implements ServiceInterface{
      */
     public ContactService(AppointmentService appointmentService) {
         this.contacts = new ArrayList<>();
+        this.appointmentService = appointmentService;
+    }
+
+    public ContactService(PaymentOptionService paymentOptionService) {
+        this.contacts = new ArrayList<>();
+        this.paymentOptionService = paymentOptionService;
+    }
+
+    public ContactService(AppointmentService appointmentService, PaymentOptionService paymentOptionService) {
+        this.contacts = new ArrayList<>();
+        this.paymentOptionService = paymentOptionService;
         this.appointmentService = appointmentService;
     }
 

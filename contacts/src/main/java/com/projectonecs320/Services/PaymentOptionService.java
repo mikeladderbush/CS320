@@ -8,7 +8,6 @@ import java.util.Random;
 import com.projectonecs320.Classes.PaymentOption;
 import com.projectonecs320.Interfaces.ServiceInterface;
 
-//TODO edit the functions to use the serviceInterface
 public class PaymentOptionService implements ServiceInterface {
 
     private List<PaymentOption> paymentOptions;
