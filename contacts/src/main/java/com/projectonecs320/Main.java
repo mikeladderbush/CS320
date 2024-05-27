@@ -19,19 +19,29 @@ public class Main {
         ContactService contactService = new ContactService();
 
         // Create contact using factory
-        Contact contact = ContactFactory.createContact();
+        Contact contact = ContactFactory.createContact(builder -> {
+        });
         contactService.addContact(contact);
 
-        Appointment appointment = AppointmentFactory.createAppointment();
-        Appointment appointment2 = AppointmentFactory.createAppointment();
-        Appointment appointment3 = AppointmentFactory.createAppointment();
+        Appointment appointment = AppointmentFactory.createAppointment(builder -> {
+        });
+        Appointment appointment2 = AppointmentFactory.createAppointment(builder -> {
+        });
+        Appointment appointment3 = AppointmentFactory.createAppointment(builder -> {
+        });
 
-        Task task = TaskFactory.createTask();
-        Task task2 = TaskFactory.createTask();
-        Task task3 = TaskFactory.createTask();
-        Task task4 = TaskFactory.createTask();
-        Task task5 = TaskFactory.createTask();
-        Task task6 = TaskFactory.createTask();
+        Task task = TaskFactory.createTask(builder -> {
+        });
+        Task task2 = TaskFactory.createTask(builder -> {
+        });
+        Task task3 = TaskFactory.createTask(builder -> {
+        });
+        Task task4 = TaskFactory.createTask(builder -> {
+        });
+        Task task5 = TaskFactory.createTask(builder -> {
+        });
+        Task task6 = TaskFactory.createTask(builder -> {
+        });
 
         appointmentService.addAppointment(appointment);
         appointmentService.addAppointment(appointment2);
