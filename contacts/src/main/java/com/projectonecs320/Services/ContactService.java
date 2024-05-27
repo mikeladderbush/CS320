@@ -15,35 +15,12 @@ import com.projectonecs320.Interfaces.ServiceInterface;
 public class ContactService implements ServiceInterface{
 
     private List<Contact> contacts;
-    private AppointmentService appointmentService;
-    private PaymentOptionService paymentOptionService;
 
     /**
      * Constructs a ContactService with an empty list of contacts.
      */
     public ContactService() {
         this.contacts = new ArrayList<>();
-    }
-
-    /**
-     * Constructs a ContactService with an empty list of contacts and a reference to the AppointmentService.
-     * 
-     * @param appointmentService The AppointmentService used to manage appointments associated with contacts.
-     */
-    public ContactService(AppointmentService appointmentService) {
-        this.contacts = new ArrayList<>();
-        this.appointmentService = appointmentService;
-    }
-
-    public ContactService(PaymentOptionService paymentOptionService) {
-        this.contacts = new ArrayList<>();
-        this.paymentOptionService = paymentOptionService;
-    }
-
-    public ContactService(AppointmentService appointmentService, PaymentOptionService paymentOptionService) {
-        this.contacts = new ArrayList<>();
-        this.paymentOptionService = paymentOptionService;
-        this.appointmentService = appointmentService;
     }
 
     /**
@@ -62,10 +39,8 @@ public class ContactService implements ServiceInterface{
      * @param appointmentId The ID of the appointment to be associated.
      * @throws IllegalArgumentException if the contact or appointment is not found.
      */
-    public void addAppointmentToContact(String contactId, String appointmentId) {
-        Contact contact = findContactById(contactId);
+    public void addAppointmentToContact(Contact contact, Appointment appointment) {
         if (contact != null) {
-            Appointment appointment = appointmentService.findAppointmentById(appointmentId);
             if (appointment != null) {
                 contact.addAppointment(appointment);
             } else {

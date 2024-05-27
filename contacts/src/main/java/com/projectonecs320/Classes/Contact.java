@@ -18,10 +18,8 @@ public class Contact {
     private List<Appointment> appointments;
 
     public static class ContactBuilder {
-        //Required
-        private final String id;
 
-        //Optional
+        private String id;
         private String firstName = "NO FIRST NAME ON FILE";
         private String lastName = "NO LAST NAME ON FILE";
         private String phone = "NO EMAIL ON FILE";
@@ -231,9 +229,10 @@ public class Contact {
      */
     public void addAppointment(Appointment appointment) {
         if (appointments != null) {
-            this.appointments.add(appointment);
+            appointments.add(appointment);
         } else {
-            this.appointments = new ArrayList<>();
+            appointments = new ArrayList<>();
+            appointments.add(appointment);
         }
     }
 

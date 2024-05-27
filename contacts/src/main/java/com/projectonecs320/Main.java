@@ -15,8 +15,8 @@ public class Main {
 
         // Initialize services
         TaskService taskService = new TaskService();
-        AppointmentService appointmentService = new AppointmentService(taskService);
-        ContactService contactService = new ContactService(appointmentService);
+        AppointmentService appointmentService = new AppointmentService();
+        ContactService contactService = new ContactService();
 
         // Create suppliers with their respective services
         AppointmentSupplier appointmentSupplier = new AppointmentSupplier(appointmentService);
@@ -49,18 +49,18 @@ public class Main {
         taskService.addTask(task6);
 
         // Link task to appointment
-        appointmentService.addTaskToAppointment(appointment.getId(), task.getId());
-        appointmentService.addTaskToAppointment(appointment.getId(), task2.getId());
-        appointmentService.addTaskToAppointment(appointment2.getId(), task3.getId());
-        appointmentService.addTaskToAppointment(appointment2.getId(), task4.getId());
-        appointmentService.addTaskToAppointment(appointment3.getId(), task5.getId());
-        appointmentService.addTaskToAppointment(appointment3.getId(), task6.getId());
+        appointmentService.addTaskToAppointment(appointment, task);
+        appointmentService.addTaskToAppointment(appointment, task2);
+        appointmentService.addTaskToAppointment(appointment2, task3);
+        appointmentService.addTaskToAppointment(appointment2, task4);
+        appointmentService.addTaskToAppointment(appointment3, task5);
+        appointmentService.addTaskToAppointment(appointment3, task6);
 
 
         // Link appointment to contact
-        contactService.addAppointmentToContact(contact.getId(), appointment.getId());
-        contactService.addAppointmentToContact(contact.getId(), appointment2.getId());
-        contactService.addAppointmentToContact(contact.getId(), appointment3.getId());
+        contactService.addAppointmentToContact(contact, appointment);
+        contactService.addAppointmentToContact(contact, appointment2);
+        contactService.addAppointmentToContact(contact, appointment3);
 
 
         // Retrieve all contacts, appointments, and tasks

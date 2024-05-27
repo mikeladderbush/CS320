@@ -13,7 +13,8 @@ public class ServiceTest {
     @Test
     public void testAddContact() {
         ContactService contactService = new ContactService();
-        Contact contact = ContactFactory.createContact();
+        Contact contact = ContactFactory.createContact(builder -> {
+        });
         contactService.addContact(contact);
         assertEquals(1, contactService.getAllContacts().size());
         assertTrue(contactService.getAllContacts().contains(contact));
@@ -22,7 +23,7 @@ public class ServiceTest {
     @Test
     public void testAddAppointmentToContact() {
         AppointmentService appointmentService = new AppointmentService();
-        ContactService contactService = new ContactService(appointmentService);
+        ContactService contactService = new ContactService();
 
         // Create appointment
         Appointment appointment = new Appointment("1");
@@ -30,11 +31,11 @@ public class ServiceTest {
 
         // Create contact
         Contact contact = ContactFactory.createContact();
+        contact.setId("1");
         contactService.addContact(contact);
-        contact = contactService.findContactById(contact.getId());
 
         // Add appointment to contact
-        contactService.addAppointmentToContact(contact.getId(), appointment.getId());
+        contactService.addAppointmentToContact(contact, appointment);
 
         // Check if appointment is added to contact
         assertEquals(1, contact.getAppointments().size());
@@ -44,27 +45,30 @@ public class ServiceTest {
     @Test(expected = IllegalArgumentException.class)
     public void testAddAppointmentToContactWithNoContact() {
         AppointmentService appointmentService = new AppointmentService();
-        ContactService contactService = new ContactService(appointmentService);
+        ContactService contactService = new ContactService();
 
         // Create appointment
         Appointment appointment = new Appointment("1");
         appointmentService.addAppointment(appointment);
 
+        Contact contact = null;
+
         // Add appointment to non-existent contact
-        contactService.addAppointmentToContact("nonexistent", appointment.getId());
+        contactService.addAppointmentToContact(contact, appointment);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddAppointmentToContactWithNoAppointment() {
-        AppointmentService appointmentService = new AppointmentService();
-        ContactService contactService = new ContactService(appointmentService);
+        ContactService contactService = new ContactService();
 
         // Create contact
         Contact contact = ContactFactory.createContact();
         contactService.addContact(contact);
 
+        Appointment appointment = null;
+
         // Add non-existent appointment to contact
-        contactService.addAppointmentToContact(contact.getId(), "nonexistent");
+        contactService.addAppointmentToContact(contact, appointment);
     }
 
     @Test
@@ -84,7 +88,7 @@ public class ServiceTest {
         assertEquals(1, contactService.getAllContacts().size());
         assertFalse(contactService.getAllContacts().contains(contact1));
     }
-    
+
     @Test
     public void testAddAppointment() {
         AppointmentService appointmentService = new AppointmentService();
@@ -97,7 +101,7 @@ public class ServiceTest {
     @Test
     public void testAddTaskToAppointment() {
         TaskService taskService = new TaskService();
-        AppointmentService appointmentService = new AppointmentService(taskService);
+        AppointmentService appointmentService = new AppointmentService();
 
         // Create task
         Task task = new Task("1");
@@ -108,7 +112,7 @@ public class ServiceTest {
         appointmentService.addAppointment(appointment);
 
         // Add task to appointment
-        appointmentService.addTaskToAppointment(appointment.getId(), task.getId());
+        appointmentService.addTaskToAppointment(appointment, task);
 
         // Check if task is added to appointment
         assertEquals(1, appointment.getTasks().size());
@@ -118,14 +122,16 @@ public class ServiceTest {
     @Test(expected = IllegalArgumentException.class)
     public void testAddTaskToAppointmentWithNoAppointment() {
         TaskService taskService = new TaskService();
-        AppointmentService appointmentService = new AppointmentService(taskService);
+        AppointmentService appointmentService = new AppointmentService();
 
         // Create task
         Task task = new Task("1");
         taskService.addTask(task);
 
+        Appointment appointment = null;
+
         // Add task to non-existent appointment
-        appointmentService.addTaskToAppointment("nonexistent", task.getId());
+        appointmentService.addTaskToAppointment(appointment, task);
     }
 
     @Test
@@ -198,5 +204,5 @@ public class ServiceTest {
         assertEquals(1, taskService.getAllTasks().size());
         assertFalse(taskService.getAllTasks().contains(task1));
     }
-    
+
 }

@@ -15,23 +15,12 @@ import com.projectonecs320.Interfaces.ServiceInterface;
 public class AppointmentService implements ServiceInterface{
 
     private List<Appointment> appointments;
-    private TaskService taskService;
 
     /**
      * Constructs an AppointmentService with an empty list of appointments.
      */
     public AppointmentService() {
         this.appointments = new ArrayList<>();
-    }
-
-    /**
-     * Constructs an AppointmentService with an empty list of appointments and a reference to the TaskService.
-     * 
-     * @param taskService The TaskService used to manage tasks associated with appointments.
-     */
-    public AppointmentService(TaskService taskService) {
-        this.appointments = new ArrayList<>();
-        this.taskService = taskService;
     }
 
     /**
@@ -50,10 +39,8 @@ public class AppointmentService implements ServiceInterface{
      * @param taskId The ID of the task to be associated.
      * @throws IllegalArgumentException if the appointment or task is not found.
      */
-    public void addTaskToAppointment(String appointmentId, String taskId) {
-        Appointment appointment = findAppointmentById(appointmentId);
+    public void addTaskToAppointment(Appointment appointment, Task task) {
         if (appointment != null) {
-            Task task = taskService.findTaskById(taskId);
             if (task != null) {
                 appointment.addTask(task);
             } else {
