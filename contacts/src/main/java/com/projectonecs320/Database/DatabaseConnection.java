@@ -23,7 +23,7 @@ public class DatabaseConnection {
     }
 
     // https://www.javatpoint.com/java-sqlite
-
+    // Next step is to create table and record objects that will be passable.
     public static void createNewTable(Connection conn, String sqlStatement) {
         try {
             Statement statement = conn.createStatement();
