@@ -1,13 +1,40 @@
 package com.projectonecs320.Classes;
 
-/**
- * Represents a Administrator.
- */
-public class Administrator {
+import com.projectonecs320.Enums.Permissions;
 
-    public static class AdministratorBuilder {
+/**
+ * Represents an Admin.
+ */
+public class Administrator extends Employee {
+
+    private final String adminLevel;
+
+    private Administrator(AdministratorBuilder builder) {
+        super(super(builder));
+        this.adminLevel = builder.adminLevel;
     }
 
-    private Administrator(AdministratorBuilder AdministratorBuilder) {
+    public static class AdministratorBuilder extends User.UserBuilder<AdministratorBuilder> {
+
+        private String adminLevel = "DEFAULT ADMIN";
+
+        public AdministratorBuilder(String id, Permissions permissions) {
+            super(id, permissions);
+        }
+
+        public AdministratorBuilder adminLevel(String value) {
+            this.adminLevel = value;
+            return self();
+        }
+
+        @Override
+        protected AdministratorBuilder self() {
+            return this;
+        }
+
+        @Override
+        public Administrator buildUser() {
+            return new Administrator(this);
+        }
     }
 }

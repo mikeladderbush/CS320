@@ -1,4 +1,4 @@
-package com.projectonecs320.Classes;
+package com.projectonecs320.Enums;
 
 public enum Permissions {
     FULL_CONTROL,

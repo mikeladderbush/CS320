@@ -1,6 +1,7 @@
 package com.projectonecs320.Classes;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +15,8 @@ public class Contact {
     private String email;
     private String phone;
     private String address;
+    private String sex;
+    private Date dob;
     private List<PaymentOption> paymentOptions;
     private List<Appointment> appointments;
 

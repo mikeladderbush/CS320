@@ -1,5 +1,6 @@
 package com.projectonecs320.Classes;
 
+import com.projectonecs320.Enums.Permissions;
 import com.projectonecs320.Interfaces.UserUtils;
 
 /**
@@ -7,55 +8,63 @@ import com.projectonecs320.Interfaces.UserUtils;
  */
 public class User implements UserUtils {
 
-    private String id;
-    private String username;
-    private String password;
-    private String email;
-    private Permissions permissions;
+    protected String id;
+    protected String username;
+    protected String password;
+    protected String email;
+    protected Permissions permissions;
+    protected Contact contactInformation;
 
-    public static class UserBuilder {
-
-        private String id;
-        private String username = "NO FIRST NAME ON FILE";
-        private String password = "NO LAST NAME ON FILE";
-        private String email = "NO PHONE NUMBER ON FILE";
-        private Permissions permissions;
-
-        public UserBuilder(String id) {
-            this.id = id;
-        }
-
-        public UserBuilder username(String value) {
-            this.username = value;
-            return this;
-        }
-
-        public UserBuilder password(String value) {
-            this.password = value;
-            return this;
-        }
-
-        public UserBuilder email(String value) {
-            this.email = value;
-            return this;
-        }
-
-        public UserBuilder permissions(Permissions permissions) {
-            this.permissions = permissions;
-            return this;
-        }
-
-        public User buildUser() {
-            return new User(this);
-        }
-    }
-
-    private User(UserBuilder UserBuilder) {
+    protected User(UserBuilder<?> UserBuilder) {
         id = UserBuilder.id;
         username = UserBuilder.username;
         password = UserBuilder.password;
         email = UserBuilder.email;
         permissions = UserBuilder.permissions;
+        contactInformation = UserBuilder.contactInformation;
+    }
+
+    public static class UserBuilder<T extends UserBuilder<T>> {
+
+        private final String id;
+        private String username = "NO FIRST NAME ON FILE";
+        protected String password = "NO LAST NAME ON FILE";
+        protected String email = "NO PHONE NUMBER ON FILE";
+        private final Permissions permissions;
+        protected Contact contactInformation;
+
+        public UserBuilder(String id, Permissions permissions) {
+            this.id = id;
+            this.permissions = permissions;
+        }
+
+        public T username(String value) {
+            this.username = value;
+            return self();
+        }
+
+        public T password(String value) {
+            this.password = value;
+            return self();
+        }
+
+        public T email(String value) {
+            this.email = value;
+            return self();
+        }
+
+        public T contactInformation(Contact value) {
+            this.contactInformation = value;
+            return self();
+        }
+
+        protected T self() {
+            return (T) this;
+        }
+
+        public User buildUser() {
+            return new User(this);
+        }
     }
 
     /**
