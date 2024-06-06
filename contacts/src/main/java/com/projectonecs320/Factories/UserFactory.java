@@ -30,13 +30,13 @@ public class UserFactory {
     public static Employee createEmployee() {
         String id = userService.generateId();
         Permissions permissions = Permissions.FULL_CONTROL;
-        return new Employee.EmployeeBuilder(id, permissions).buildUser();
+        return new Employee.EmployeeBuilder<>(id, permissions).buildUser();
     }
 
-    public static Employee createEmployee(Consumer<Employee.EmployeeBuilder> consumer) {
+    public static Employee createEmployee(Consumer<Employee.EmployeeBuilder<?>> consumer) {
         String id = userService.generateId();
         Permissions permissions = Permissions.EMPLOYEE_ACCESS;
-        Employee.EmployeeBuilder builder = new Employee.EmployeeBuilder(id, permissions);
+        Employee.EmployeeBuilder<?> builder = new Employee.EmployeeBuilder<>(id, permissions);
         consumer.accept(builder);
         return builder.buildUser();
     }

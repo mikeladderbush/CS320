@@ -4,10 +4,9 @@ import com.projectonecs320.Enums.PayBasis;
 import com.projectonecs320.Enums.Permissions;
 
 /**
- * Represents an Admin.
+ * Represents an Employee.
  */
 
- // Update to allow for inheritance of generics.
 public class Employee extends User {
 
     private final String socialSecurityNumber;
@@ -15,9 +14,9 @@ public class Employee extends User {
     private final double payrate;
     private final PayBasis paybasis;
     private final double baseEarnings;
-    private final Contact contactInformation;
+    private final Session contactInformation;
 
-    private Employee(EmployeeBuilder builder) {
+    protected Employee(EmployeeBuilder<?> builder) {
         super(builder);
         this.socialSecurityNumber = builder.socialSecurityNumber;
         this.position = builder.position;
@@ -27,57 +26,81 @@ public class Employee extends User {
         this.contactInformation = builder.contactInformation;
     }
 
-    public static class EmployeeBuilder extends User.UserBuilder<EmployeeBuilder> {
+    public static class EmployeeBuilder<T extends EmployeeBuilder<T>> extends UserBuilder<T> {
 
         private String socialSecurityNumber = "000-00-0000";
         private String position = "DEFAULT_HIRE";
         private double payrate = 0.0;
         private PayBasis paybasis = PayBasis.VOLUNTEER;
         private double baseEarnings = 0.0;
-        private Contact contact;
+        private Session contactInformation;
 
         public EmployeeBuilder(String id, Permissions permissions) {
             super(id, permissions);
         }
 
-        public EmployeeBuilder socialSecurityNumber(String value) {
+        public T socialSecurityNumber(String value) {
             this.socialSecurityNumber = value;
             return self();
         }
 
-        public EmployeeBuilder position(String value) {
+        public T position(String value) {
             this.position = value;
             return self();
         }
 
-        public EmployeeBuilder payrate(double value) {
+        public T payrate(double value) {
             this.payrate = value;
             return self();
         }
 
-        public EmployeeBuilder paybasis(PayBasis value) {
+        public T paybasis(PayBasis value) {
             this.paybasis = value;
             return self();
         }
 
-        public EmployeeBuilder baseEarnings(double value) {
+        public T baseEarnings(double value) {
             this.baseEarnings = value;
             return self();
         }
 
-        public EmployeeBuilder contactInformation(Contact value) {
+        public T contactInformation(Session value) {
             this.contactInformation = value;
             return self();
         }
 
         @Override
-        protected EmployeeBuilder self() {
-            return this;
+        protected T self() {
+            return (T) this;
         }
 
         @Override
         public Employee buildUser() {
             return new Employee(this);
         }
+    }
+
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public double getPayrate() {
+        return payrate;
+    }
+
+    public PayBasis getPaybasis() {
+        return paybasis;
+    }
+
+    public double getBaseEarnings() {
+        return baseEarnings;
+    }
+
+    public Session getContactInformation() {
+        return contactInformation;
     }
 }

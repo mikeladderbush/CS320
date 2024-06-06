@@ -10,11 +10,11 @@ public class Administrator extends Employee {
     private final String adminLevel;
 
     private Administrator(AdministratorBuilder builder) {
-        super(super(builder));
+        super(builder);
         this.adminLevel = builder.adminLevel;
     }
 
-    public static class AdministratorBuilder extends User.UserBuilder<AdministratorBuilder> {
+    public static class AdministratorBuilder extends EmployeeBuilder<AdministratorBuilder> {
 
         private String adminLevel = "DEFAULT ADMIN";
 
@@ -36,5 +36,9 @@ public class Administrator extends Employee {
         public Administrator buildUser() {
             return new Administrator(this);
         }
+    }
+
+    public String getAdminLevel() {
+        return adminLevel;
     }
 }

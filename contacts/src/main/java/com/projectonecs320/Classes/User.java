@@ -1,5 +1,8 @@
 package com.projectonecs320.Classes;
 
+import java.util.Date;
+import java.util.List;
+
 import com.projectonecs320.Enums.Permissions;
 import com.projectonecs320.Interfaces.UserUtils;
 
@@ -9,33 +12,66 @@ import com.projectonecs320.Interfaces.UserUtils;
 public class User implements UserUtils {
 
     protected String id;
+    private String firstName;
+    private String lastName;
     protected String username;
     protected String password;
     protected String email;
+    private String phone;
+    private String address;
+    private String sex;
+    private Date dob;
+    private List<PaymentOption> paymentOptions;
     protected Permissions permissions;
-    protected Contact contactInformation;
 
     protected User(UserBuilder<?> UserBuilder) {
         id = UserBuilder.id;
+        firstName = UserBuilder.firstName;
+        lastName = UserBuilder.lastName;
+        phone = UserBuilder.phone;
         username = UserBuilder.username;
         password = UserBuilder.password;
         email = UserBuilder.email;
+        address = UserBuilder.address;
+        sex = UserBuilder.sex;
+        dob = UserBuilder.dob;
+        paymentOptions = UserBuilder.paymentOptions;
         permissions = UserBuilder.permissions;
-        contactInformation = UserBuilder.contactInformation;
     }
 
     public static class UserBuilder<T extends UserBuilder<T>> {
 
         private final String id;
+        private String firstName = "NO FIRST NAME ON FILE";
+        private String lastName = "NO LAST NAME ON FILE";
+        private String phone = "NO EMAIL ON FILE";
         private String username = "NO FIRST NAME ON FILE";
         protected String password = "NO LAST NAME ON FILE";
         protected String email = "NO PHONE NUMBER ON FILE";
+        private String address = "NO ADDRESS ON FILE";
+        private String sex = "DEFAULT";
+        private Date dob = null;
+        private List<PaymentOption> paymentOptions = null;
         private final Permissions permissions;
-        protected Contact contactInformation;
 
         public UserBuilder(String id, Permissions permissions) {
             this.id = id;
             this.permissions = permissions;
+        }
+
+        public T firstName(String value) {
+            this.firstName = value;
+            return self();
+        }
+
+        public T lastName(String value) {
+            this.lastName = value;
+            return self();
+        }
+
+        public T phone(String value) {
+            this.phone = value;
+            return self();
         }
 
         public T username(String value) {
@@ -53,8 +89,23 @@ public class User implements UserUtils {
             return self();
         }
 
-        public T contactInformation(Contact value) {
-            this.contactInformation = value;
+        public T address(String value) {
+            this.address = value;
+            return self();
+        }
+
+        public T sex(String value) {
+            this.sex = value;
+            return self();
+        }
+
+        public T dob(Date value) {
+            this.dob = value;
+            return self();
+        }
+
+        public T paymentOptions(List<PaymentOption> value) {
+            this.paymentOptions = value;
             return self();
         }
 
@@ -83,6 +134,42 @@ public class User implements UserUtils {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        if (firstName != null) {
+            this.firstName = firstName;
+        } else {
+            throw new IllegalArgumentException("First Name cannot be null");
+        }
+    }
+
+    public String getLastName() {
+        return firstName;
+    }
+
+    public void setLastName(String lastName) {
+        if (lastName != null) {
+            this.lastName = lastName;
+        } else {
+            throw new IllegalArgumentException("Last Name cannot be null");
+        }
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        if (phone != null) {
+            this.phone = phone;
+        } else {
+            throw new IllegalArgumentException("A Phone number is necessary");
+        }
     }
 
     /**
@@ -144,6 +231,30 @@ public class User implements UserUtils {
         } else {
             throw new IllegalArgumentException("Email error");
         }
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public List<PaymentOption> getPaymentOptions() {
+        return paymentOptions;
+    }
+
+    public void setPaymentOptions(List<PaymentOption> paymentOptions) {
+        this.paymentOptions = paymentOptions;
     }
 
     public Permissions getPermissions() {
