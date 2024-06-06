@@ -3,7 +3,6 @@ package com.projectonecs320.Services;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import com.projectonecs320.Classes.User;
 import com.projectonecs320.Interfaces.ServiceInterface;
@@ -37,15 +36,7 @@ public class UserService implements ServiceInterface {
      * @return A randomly generated ID for Users.
      */
     public String generateId() {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        StringBuilder randomString = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            int j = random.nextInt(chars.length());
-            char randomChar = chars.charAt(j);
-            randomString.append(randomChar);
-        }
-        return randomString.toString();
+        return ServiceInterface.super.generateId();
     }
 
     /**

@@ -11,6 +11,7 @@ import com.projectonecs320.Interfaces.UserUtils;
  */
 public class User implements UserUtils {
 
+    // decide to remove id or not and let sqlite handle
     protected String id;
     private String firstName;
     private String lastName;
@@ -249,6 +250,13 @@ public class User implements UserUtils {
         this.sex = sex;
     }
 
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
     public List<PaymentOption> getPaymentOptions() {
         return paymentOptions;
     }

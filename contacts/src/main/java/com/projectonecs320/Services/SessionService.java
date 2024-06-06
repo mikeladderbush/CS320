@@ -37,15 +37,7 @@ public class SessionService implements ServiceInterface {
      * @return A randomly generated ID for Sessions.
      */
     public String generateId() {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        StringBuilder randomString = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            int j = random.nextInt(chars.length());
-            char randomChar = chars.charAt(j);
-            randomString.append(randomChar);
-        }
-        return randomString.toString();
+        return ServiceInterface.super.generateId();
     }
 
     /**

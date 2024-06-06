@@ -1,5 +1,11 @@
 package com.projectonecs320.Services;
 
-public class AdministratorService {
-    
+import com.projectonecs320.Interfaces.ServiceInterface;
+
+public class AdministratorService implements ServiceInterface {
+
+    public String generateId() {
+        return ServiceInterface.super.generateId();
+    }
+
 }
