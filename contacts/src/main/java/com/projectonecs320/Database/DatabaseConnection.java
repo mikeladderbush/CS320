@@ -13,7 +13,7 @@ public class DatabaseConnection {
 
     public Connection connectToDatabase(String databaseName) {
         Connection conn = null;
-        String url = "jdbc:sqlite:C:/sqlite/" + databaseName;
+        String url = "jdbc:sqlite:C:/Program Files (x86)/sqlite/" + databaseName;
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
