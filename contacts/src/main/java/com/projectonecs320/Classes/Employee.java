@@ -14,7 +14,6 @@ public class Employee extends User {
     private final double payrate;
     private final PayBasis paybasis;
     private final double baseEarnings;
-    private final Session contactInformation;
 
     protected Employee(EmployeeBuilder<?> builder) {
         super(builder);
@@ -23,7 +22,6 @@ public class Employee extends User {
         this.payrate = builder.payrate;
         this.paybasis = builder.paybasis;
         this.baseEarnings = builder.baseEarnings;
-        this.contactInformation = builder.contactInformation;
     }
 
     public static class EmployeeBuilder<T extends EmployeeBuilder<T>> extends UserBuilder<T> {
@@ -33,7 +31,6 @@ public class Employee extends User {
         private double payrate = 0.0;
         private PayBasis paybasis = PayBasis.VOLUNTEER;
         private double baseEarnings = 0.0;
-        private Session contactInformation;
 
         public EmployeeBuilder(String id, Permissions permissions) {
             super(id, permissions);
@@ -64,11 +61,6 @@ public class Employee extends User {
             return self();
         }
 
-        public T contactInformation(Session value) {
-            this.contactInformation = value;
-            return self();
-        }
-
         @Override
         protected T self() {
             return (T) this;
@@ -78,6 +70,10 @@ public class Employee extends User {
         public Employee buildUser() {
             return new Employee(this);
         }
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getSocialSecurityNumber() {
@@ -98,9 +94,5 @@ public class Employee extends User {
 
     public double getBaseEarnings() {
         return baseEarnings;
-    }
-
-    public Session getContactInformation() {
-        return contactInformation;
     }
 }

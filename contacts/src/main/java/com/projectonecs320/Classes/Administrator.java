@@ -38,6 +38,10 @@ public class Administrator extends Employee {
         }
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getAdminLevel() {
         return adminLevel;
     }

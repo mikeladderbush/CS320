@@ -1,6 +1,5 @@
 package com.projectonecs320.Classes;
 
-import java.util.Date;
 import java.util.List;
 
 import com.projectonecs320.Enums.Permissions;
@@ -21,7 +20,7 @@ public class User implements UserUtils {
     private String phone;
     private String address;
     private String sex;
-    private Date dob;
+    private String dob;
     private List<PaymentOption> paymentOptions;
     protected Permissions permissions;
 
@@ -51,7 +50,7 @@ public class User implements UserUtils {
         protected String email = "NO PHONE NUMBER ON FILE";
         private String address = "NO ADDRESS ON FILE";
         private String sex = "DEFAULT";
-        private Date dob = null;
+        private String dob = "DEFAULT";
         private List<PaymentOption> paymentOptions = null;
         private final Permissions permissions;
 
@@ -100,7 +99,7 @@ public class User implements UserUtils {
             return self();
         }
 
-        public T dob(Date value) {
+        public T dob(String value) {
             this.dob = value;
             return self();
         }
@@ -250,13 +249,14 @@ public class User implements UserUtils {
         this.sex = sex;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
+
     public List<PaymentOption> getPaymentOptions() {
         return paymentOptions;
     }
